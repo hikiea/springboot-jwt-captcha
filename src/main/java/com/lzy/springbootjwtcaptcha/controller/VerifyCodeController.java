@@ -19,7 +19,7 @@ import com.lzy.springbootjwtcaptcha.mapper.impl.IVerifyCodeMapperImpl;
 @RequestMapping("api")
 public class VerifyCodeController {
 
-    @GetMapping("/getCode")
+    @GetMapping("/code")
     public void verifyCode(HttpServletRequest request, HttpServletResponse response) {
         IVerifyCodeMapperImpl iVerifyCodeGen = new IVerifyCodeMapperImpl();
         try {
