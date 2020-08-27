@@ -80,8 +80,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             }
         }
 
-
-
         return true;
     }
 

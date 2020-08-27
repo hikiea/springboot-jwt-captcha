@@ -6,7 +6,7 @@ import lombok.Data;
  * @author lizhongyi
  */
 @Data
-public class VerifyCode {
+public class CheckCode {
 
     private String code;
 

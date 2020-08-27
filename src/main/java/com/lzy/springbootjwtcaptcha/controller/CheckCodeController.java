@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.lzy.springbootjwtcaptcha.dao.VerifyCode;
-import com.lzy.springbootjwtcaptcha.service.IVerifyCodeService;
+import com.lzy.springbootjwtcaptcha.annotation.PassToken;
+import com.lzy.springbootjwtcaptcha.dao.CheckCode;
+import com.lzy.springbootjwtcaptcha.service.CheckCodeService;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -18,17 +20,19 @@ import com.lzy.springbootjwtcaptcha.service.IVerifyCodeService;
  */
 @Controller
 @RequestMapping("api")
-public class VerifyCodeController {
+@Slf4j
+public class CheckCodeController {
 
     @Autowired
-    private IVerifyCodeService iVerifyCodeGen;
+    private CheckCodeService checkCodeService;
 
+    @PassToken
     @GetMapping("/code")
     public void verifyCode(HttpServletRequest request, HttpServletResponse response) {
         try {
             //设置长宽
-            VerifyCode verifyCode = iVerifyCodeGen.generate(80, 28);
-            String code = verifyCode.getCode();
+            CheckCode checkCode = checkCodeService.generate(80, 28);
+            String code = checkCode.getCode();
             System.out.println("当前验证码为:" + code);
             //将VerifyCode绑定session
             request.getSession().setAttribute("code", code);
@@ -40,7 +44,7 @@ public class VerifyCodeController {
             response.setDateHeader("Expires", 0);
             //设置响应内容类型
             response.setContentType("image/jpeg");
-            response.getOutputStream().write(verifyCode.getImgBytes());
+            response.getOutputStream().write(checkCode.getImgBytes());
             response.getOutputStream().flush();
         } catch (IOException e) {
             e.printStackTrace();

@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import com.lzy.springbootjwtcaptcha.dao.VerifyCode;
+import com.lzy.springbootjwtcaptcha.dao.CheckCode;
 import com.lzy.springbootjwtcaptcha.util.RandomUtils;
 
 
@@ -20,10 +20,10 @@ import com.lzy.springbootjwtcaptcha.util.RandomUtils;
  * @author lizhongyi
  */
 @Service
-public class IVerifyCodeService {
+public class CheckCodeService {
 
 
-    private static final Logger logger = LoggerFactory.getLogger(IVerifyCodeService.class);
+    private static final Logger logger = LoggerFactory.getLogger(CheckCodeService.class);
 
     private static final String[] FONT_TYPES = { "\u5b8b\u4f53", "\u65b0\u5b8b\u4f53", "\u9ed1\u4f53", "\u6977\u4f53", "\u96b6\u4e66" };
 
@@ -83,21 +83,21 @@ public class IVerifyCodeService {
      * @param height
      * @return
      */
-    public VerifyCode generate(int width, int height) {
-        VerifyCode verifyCode = null;
+    public CheckCode generate(int width, int height) {
+        CheckCode checkCode = null;
         try (
                 //将流的初始化放到这里就不需要手动关闭流
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ) {
             String code = generate(width, height, baos);
-            verifyCode = new VerifyCode();
-            verifyCode.setCode(code);
-            verifyCode.setImgBytes(baos.toByteArray());
+            checkCode = new CheckCode();
+            checkCode.setCode(code);
+            checkCode.setImgBytes(baos.toByteArray());
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
-            verifyCode = null;
+            checkCode = null;
         }
-        return verifyCode;
+        return checkCode;
     }
 
     /**

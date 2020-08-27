@@ -1,5 +1,6 @@
 package com.lzy.springbootjwtcaptcha.controller;
 
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
-import com.lzy.springbootjwtcaptcha.annotation.PassToken;
 import com.lzy.springbootjwtcaptcha.annotation.UserLoginToken;
 import com.lzy.springbootjwtcaptcha.dao.dto.UserLoginDTO;
 import com.lzy.springbootjwtcaptcha.service.CheckService;
+import com.lzy.springbootjwtcaptcha.service.DateService;
 import com.lzy.springbootjwtcaptcha.service.TokenService;
 import com.lzy.springbootjwtcaptcha.service.UserService;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -23,6 +26,7 @@ import com.lzy.springbootjwtcaptcha.service.UserService;
  */
 @RestController
 @RequestMapping("api")
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -33,6 +37,7 @@ public class UserController {
 
     @Autowired
     CheckService checkService;
+
 
     @PostMapping("/login")
     public Object login(@RequestBody UserLoginDTO userLoginInfo, HttpServletRequest request){
@@ -57,8 +62,7 @@ public class UserController {
     @GetMapping("/getAllUser")
     public Object getAllUserByAdmin(HttpServletRequest request){
         JSONObject jsonObject=new JSONObject();
-        boolean b = checkService.checkPowerByAdmin(request);
-        if (b){
+        if (checkService.checkPowerByAdmin(request)){
             return userService.findUser();
         }else{
             jsonObject.put("message","权限不足");
@@ -66,9 +70,4 @@ public class UserController {
         }
     }
 
-    @PassToken
-    @GetMapping("/getNewsNotLogin")
-    public String unlimited(){
-        return "这个消息不需要权限";
-    }
 }
