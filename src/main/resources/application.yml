@@ -1,0 +1,6 @@
+server:
+  port: 8893
+
+spring:
+  profiles:
+    active: local
