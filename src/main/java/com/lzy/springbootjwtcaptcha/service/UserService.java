@@ -9,8 +9,7 @@ import com.lzy.springbootjwtcaptcha.mapper.UserMapper;
 
 
 /**
- * @author jinbin
- * @date 2018-07-08 20:52
+ * @author lizhongyi
  */
 @Service
 public class UserService {

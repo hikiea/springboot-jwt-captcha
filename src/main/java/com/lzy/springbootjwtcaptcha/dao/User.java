@@ -2,9 +2,9 @@ package com.lzy.springbootjwtcaptcha.dao;
 
 import lombok.Data;
 
+
 /**
- * @author jinbin
- * @date 2018-07-08 20:43
+ * @author lizhongyi
  */
 @Data
 public class User {

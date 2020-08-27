@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * @author jinbin
- * @date 2018-07-08 22:37
+ * @author lizhongyi
  */
 @ControllerAdvice
 public class GloablExceptionHandler {

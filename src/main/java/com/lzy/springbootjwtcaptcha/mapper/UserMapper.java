@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import com.lzy.springbootjwtcaptcha.dao.User;
 
+
 /**
- * @author jinbin
- * @date 2018-07-08 20:44
+ * @author lizhongyi
  */
 @Mapper
 @Repository

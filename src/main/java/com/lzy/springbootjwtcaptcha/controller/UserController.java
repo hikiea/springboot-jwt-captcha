@@ -17,9 +17,9 @@ import com.lzy.springbootjwtcaptcha.service.CheckService;
 import com.lzy.springbootjwtcaptcha.service.TokenService;
 import com.lzy.springbootjwtcaptcha.service.UserService;
 
+
 /**
- * @author jinbin
- * @date 2018-07-08 20:45
+ * @author lizhongyi
  */
 @RestController
 @RequestMapping("api")

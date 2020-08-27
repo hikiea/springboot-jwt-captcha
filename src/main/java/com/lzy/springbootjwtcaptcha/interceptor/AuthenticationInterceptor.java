@@ -19,9 +19,9 @@ import com.lzy.springbootjwtcaptcha.dao.User;
 import com.lzy.springbootjwtcaptcha.service.UserService;
 
 
+
 /**
- * @author jinbin
- * @date 2018-07-08 20:41
+ * @author lizhongyi
  */
 public class AuthenticationInterceptor implements HandlerInterceptor {
 

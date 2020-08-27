@@ -6,6 +6,9 @@ import java.io.OutputStream;
 import com.lzy.springbootjwtcaptcha.dao.VerifyCode;
 
 
+/**
+ * @author lizhongyi
+ */
 public interface IVerifyCodeMapper {
 
     /**

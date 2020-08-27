@@ -6,9 +6,9 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.lzy.springbootjwtcaptcha.interceptor.AuthenticationInterceptor;
 
+
 /**
- * @author jinbin
- * @date 2018-07-08 22:33
+ * @author lizhongyi
  */
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {

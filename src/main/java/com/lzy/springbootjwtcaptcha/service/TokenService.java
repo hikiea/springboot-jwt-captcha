@@ -6,9 +6,9 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.lzy.springbootjwtcaptcha.dao.User;
 
 
+
 /**
- * @author jinbin
- * @date 2018-07-08 21:04
+ * @author lizhongyi
  */
 @Service("TokenService")
 public class TokenService {
