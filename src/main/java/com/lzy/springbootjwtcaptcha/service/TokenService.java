@@ -12,12 +12,14 @@ import com.lzy.springbootjwtcaptcha.dao.User;
  */
 @Service("TokenService")
 public class TokenService {
+
     public String getToken(User user) {
         String token="";
-        // 将 user id 保存到 token 里面
+        // 将 需要的信息 保存到 token 里面
         token= JWT.create().withAudience(user.getId(),user.getUsername(),user.getPower())
                 // 以 password 作为 token 的密钥
                 .sign(Algorithm.HMAC256(user.getPassword()));
         return token;
     }
+
 }

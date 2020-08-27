@@ -26,7 +26,7 @@ import com.lzy.springbootjwtcaptcha.service.UserService;
 public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {

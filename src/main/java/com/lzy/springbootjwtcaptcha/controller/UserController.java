@@ -30,14 +30,13 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    TokenService tokenService;
+    private TokenService tokenService;
 
     @Autowired
-    CheckService checkService;
-
+    private CheckService checkService;
 
     @PostMapping("/login")
     public Object login(@RequestBody UserLoginDTO userLoginInfo, HttpServletRequest request){

@@ -27,7 +27,7 @@ public class CheckService {
     private TokenService tokenService;
 
     @Autowired
-    DateService dateService;
+    private DateService dateService;
 
 
 
