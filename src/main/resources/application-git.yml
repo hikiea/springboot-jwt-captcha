@@ -5,3 +5,8 @@ spring:
     username: xxxxxxxx
     password: xxxxxxxx
 
+logging:
+  pattern:
+    console: "%d - %msg%n"
+  file:
+    path: X:\xxx\xxx\xxx\xxx
