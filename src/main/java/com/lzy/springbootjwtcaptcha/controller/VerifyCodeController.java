@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.lzy.springbootjwtcaptcha.dao.VerifyCode;
-import com.lzy.springbootjwtcaptcha.mapper.Impl.IVerifyCodeMapperImpl;
+import com.lzy.springbootjwtcaptcha.mapper.impl.IVerifyCodeMapperImpl;
 
 
 /**

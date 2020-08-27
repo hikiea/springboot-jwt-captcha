@@ -1,4 +1,4 @@
-package com.lzy.springbootjwtcaptcha.mapper.Impl;
+package com.lzy.springbootjwtcaptcha.mapper.impl;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
