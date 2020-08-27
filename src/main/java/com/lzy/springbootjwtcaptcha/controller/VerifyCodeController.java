@@ -4,11 +4,12 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.lzy.springbootjwtcaptcha.dao.VerifyCode;
-import com.lzy.springbootjwtcaptcha.mapper.impl.IVerifyCodeMapperImpl;
+import com.lzy.springbootjwtcaptcha.service.IVerifyCodeService;
 
 
 /**
@@ -19,14 +20,16 @@ import com.lzy.springbootjwtcaptcha.mapper.impl.IVerifyCodeMapperImpl;
 @RequestMapping("api")
 public class VerifyCodeController {
 
+    @Autowired
+    private IVerifyCodeService iVerifyCodeGen;
+
     @GetMapping("/code")
     public void verifyCode(HttpServletRequest request, HttpServletResponse response) {
-        IVerifyCodeMapperImpl iVerifyCodeGen = new IVerifyCodeMapperImpl();
         try {
             //设置长宽
             VerifyCode verifyCode = iVerifyCodeGen.generate(80, 28);
             String code = verifyCode.getCode();
-            System.out.println(code);
+            System.out.println("当前验证码为:" + code);
             //将VerifyCode绑定session
             request.getSession().setAttribute("code", code);
             //设置响应头

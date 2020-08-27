@@ -1,4 +1,4 @@
-package com.lzy.springbootjwtcaptcha.mapper.impl;
+package com.lzy.springbootjwtcaptcha.service;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,8 +10,8 @@ import javax.imageio.ImageIO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import com.lzy.springbootjwtcaptcha.dao.VerifyCode;
-import com.lzy.springbootjwtcaptcha.mapper.IVerifyCodeMapper;
 import com.lzy.springbootjwtcaptcha.util.RandomUtils;
 
 
@@ -19,10 +19,11 @@ import com.lzy.springbootjwtcaptcha.util.RandomUtils;
  * 生成验证码图片
  * @author lizhongyi
  */
-public class IVerifyCodeMapperImpl implements IVerifyCodeMapper {
+@Service
+public class IVerifyCodeService {
 
 
-    private static final Logger logger = LoggerFactory.getLogger(IVerifyCodeMapperImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(IVerifyCodeService.class);
 
     private static final String[] FONT_TYPES = { "\u5b8b\u4f53", "\u65b0\u5b8b\u4f53", "\u9ed1\u4f53", "\u6977\u4f53", "\u96b6\u4e66" };
 
@@ -63,7 +64,6 @@ public class IVerifyCodeMapperImpl implements IVerifyCodeMapper {
      * @return
      * @throws IOException
      */
-    @Override
     public String generate(int width, int height, OutputStream os) throws IOException {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics graphics = image.getGraphics();
@@ -83,7 +83,6 @@ public class IVerifyCodeMapperImpl implements IVerifyCodeMapper {
      * @param height
      * @return
      */
-    @Override
     public VerifyCode generate(int width, int height) {
         VerifyCode verifyCode = null;
         try (
