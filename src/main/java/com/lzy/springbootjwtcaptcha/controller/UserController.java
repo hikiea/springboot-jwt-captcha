@@ -33,9 +33,6 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private TokenService tokenService;
-
-    @Autowired
     private CheckService checkService;
 
     @PostMapping("/login")
@@ -68,5 +65,4 @@ public class UserController {
             return jsonObject;
         }
     }
-
 }

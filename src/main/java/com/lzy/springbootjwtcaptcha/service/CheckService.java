@@ -26,11 +26,6 @@ public class CheckService {
     @Autowired
     private TokenService tokenService;
 
-    @Autowired
-    private DateService dateService;
-
-
-
     public Object checkLogin(UserLoginDTO userLoginInfo, HttpServletRequest request) {
 
         JSONObject jsonObject=new JSONObject();

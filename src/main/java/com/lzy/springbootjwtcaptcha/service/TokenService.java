@@ -21,5 +21,4 @@ public class TokenService {
                 .sign(Algorithm.HMAC256(user.getPassword()));
         return token;
     }
-
 }
