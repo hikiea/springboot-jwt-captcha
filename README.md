@@ -60,13 +60,9 @@ jwt验证功能大幅度参考：https://www.jianshu.com/p/e88d3f8151db
     格式：Json
     
     {
-        "user": {
-            "id": "3",
-            "username": "admin",
-            "password": "admin",
-            "power": "admin"
-        },
-        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsiMyIsImFkbWluIiwiYWRtaW4iXX0.T6KiZVND3Hat7XoM6kcEN4sTIAzNwlsY5BpEpcxOFmY"
+        "username":"用户名",
+        "password":"密码",
+        "code":"验证码"
     }
     ```
 
