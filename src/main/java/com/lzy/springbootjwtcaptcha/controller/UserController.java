@@ -39,16 +39,23 @@ public class UserController {
     
     @UserLoginToken
     @GetMapping("/user")
-    public Object getUserMessage(HttpServletRequest httpServletRequest){
+    public ResultDTO getUserMessage(HttpServletRequest httpServletRequest){
         ResultDTO userMessage = userService.getUserMessage(httpServletRequest);
         return userMessage;
     }
 
     @UserLoginToken
     @GetMapping("/user/all")
-    public Object getAllUserByAdmin(HttpServletRequest httpServletRequest){
+    public ResultDTO getAllUserByAdmin(HttpServletRequest httpServletRequest){
         ResultDTO allUserByAdmin = userService.getAllUserByAdmin(httpServletRequest);
         return allUserByAdmin;
+    }
+
+    @UserLoginToken
+    @GetMapping("/logout")
+    public ResultDTO logout(HttpServletRequest httpServletRequest){
+        ResultDTO logout = userService.logout(httpServletRequest);
+        return logout;
     }
 
 }

@@ -56,6 +56,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 if (token == null) {
                     throw new RuntimeException("无token，请重新登录");
                 }
+                if (userService.checkBlackToken(token) != null){
+                    throw new RuntimeException("token已过期，请重新登录");
+                }
                 // 获取 token 中的 user id
                 String userId;
                 try {

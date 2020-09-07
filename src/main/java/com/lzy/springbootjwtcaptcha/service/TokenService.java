@@ -9,7 +9,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.lzy.springbootjwtcaptcha.dao.User;
 
 
-
 /**
  * @author lizhongyi
  */
@@ -30,7 +29,6 @@ public class TokenService {
         String token="";
         // 将 需要的信息 保存到 token 里面
         token= JWT.create().withAudience(user.getId(),user.getUsername(),user.getPower())
-
                 // 设置token存活时间 10天
                 .withIssuedAt(iatDate)
                 .withExpiresAt(expiresDate)

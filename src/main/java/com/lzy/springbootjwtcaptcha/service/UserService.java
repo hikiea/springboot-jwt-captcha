@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
+import com.lzy.springbootjwtcaptcha.dao.BlackList;
 import com.lzy.springbootjwtcaptcha.dao.User;
 import com.lzy.springbootjwtcaptcha.dao.dto.ResultDTO;
 import com.lzy.springbootjwtcaptcha.mapper.UserMapper;
@@ -50,5 +51,16 @@ public class UserService {
         }else{
             return ResultDTO.errorOf(500,"权限不足");
         }
+    }
+
+    public ResultDTO logout(HttpServletRequest httpServletRequest) {
+        String token = httpServletRequest.getHeader("token");
+        userMapper.addBlacklist(token);
+        return ResultDTO.successOf("token已加入黑名单，登出成功");
+    }
+
+    public BlackList checkBlackToken(String token) {
+        BlackList blackList = userMapper.checkBlackToken(token);
+        return blackList;
     }
 }
