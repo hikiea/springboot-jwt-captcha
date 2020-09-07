@@ -32,7 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
-application-local.yml
+application-win.yml
+application-linux.yml
 
 springbootdemo.log
 src/main/resources/log/

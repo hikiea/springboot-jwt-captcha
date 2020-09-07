@@ -14,7 +14,7 @@ public class GloablExceptionHandler {
 
     @ResponseBody
     @ExceptionHandler(Exception.class)
-    public Object handleException(Exception e) {
+    public ResultDTO handleException(Exception e) {
         String msg = e.getMessage();
         return ResultDTO.errorOf(500,msg);
     }

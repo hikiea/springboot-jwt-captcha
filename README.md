@@ -16,7 +16,7 @@ jwt验证功能大幅度参考：https://www.jianshu.com/p/e88d3f8151db
   GET
   ```
 
-- 接口
+- 请求接口
 
   ```java
   /api/code
@@ -42,7 +42,7 @@ jwt验证功能大幅度参考：https://www.jianshu.com/p/e88d3f8151db
   POST
   ```
 
-- 接口
+- 请求接口
 
   ```
   /api/login
@@ -72,13 +72,17 @@ jwt验证功能大幅度参考：https://www.jianshu.com/p/e88d3f8151db
 
   ```java
   {
-      "user": {
-          "id": "用户id",
-          "username": "用户名",
-          "password": "用户密码",
-          "power": "admin"
-      },
-      "token": "用户的token"
+      "code": 200,
+      "message": "登录成功",
+      "data": {
+          "user": {
+              "id": "1",
+              "username": "string",
+              "password": "string",
+              "power": "user"
+          },
+          "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsiMSIsInN0cmluZyIsInVzZXIiXSwiZXhwIjoxNjAwMzI2OTczLCJpYXQiOjE1OTk0NjI5NzN9.qxIL8McvL09Gb983_rRuVPGoP1dcIdorhkpmoMl8-mo"
+      }
   }
   ```
 
@@ -94,7 +98,7 @@ jwt验证功能大幅度参考：https://www.jianshu.com/p/e88d3f8151db
   GET
   ```
 
-- 接口
+- 请求接口
 
   ```
   /api/getUser
@@ -120,9 +124,12 @@ jwt验证功能大幅度参考：https://www.jianshu.com/p/e88d3f8151db
 
   ```
   {
-      "用户名：": "用户名",
-      "当前权限：": "用户权限",
-      "message": "登录成功"
+      "code": 200,
+      "message": "用户获取成功！",
+      "data": {
+          "用户名：": "string",
+          "当前权限：": "user"
+      }
   }
   ```
 
@@ -144,7 +151,7 @@ jwt验证功能大幅度参考：https://www.jianshu.com/p/e88d3f8151db
   GET
   ```
 
-- 接口
+- 请求接口
 
   ```
   管理员API全部需要管理员（admin）权限才能访问
@@ -169,27 +176,81 @@ jwt验证功能大幅度参考：https://www.jianshu.com/p/e88d3f8151db
 - 返回结果
 
   ```java
-  [
-      {
-          "id": "1",
-          "username": "string",
-          "password": "string",
-          "power": "user"
-      },
-      {
-          "id": "2",
-          "username": "char",
-          "password": "char",
-          "power": "user"
-      },
-      {
-          "id": "3",
-          "username": "admin",
-          "password": "admin",
-          "power": "admin"
-      }
-  ]
+  {
+      "code": 200,
+      "message": "所有用户获取成功",
+      "data": [
+          {
+              "id": "1",
+              "username": "string",
+              "password": "string",
+              "power": "user"
+          },
+          {
+              "id": "2",
+              "username": "char",
+              "password": "char",
+              "power": "user"
+          },
+          {
+              "id": "3",
+              "username": "admin",
+              "password": "admin",
+              "power": "admin"
+          }
+      ]
+  }
   ```
+
+
+
+## 四、退出登录
+
+退出登录功能主要操作token，把token加入黑名单中
+
+- 请求方式
+
+  ```
+  GET
+  ```
+
+- 请求接口
+
+  ```
+  /api/logout
+  ```
+
+- 请求参数
+
+  - 路径参数
+
+  - 条件参数
+
+  - 请求体参数
+
+  - 请求头参数
+
+    ```
+    key:"token"
+    
+    value:"服务器给用户颁发的token"
+    ```
+
+- 返回结果
+
+  ```
+  {
+      "code": 200,
+      "message": "token已加入黑名单，登出成功",
+      "data": null
+  }
+  ```
+
+  
+
+
+
+
 
 
 
