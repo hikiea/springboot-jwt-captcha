@@ -18,8 +18,6 @@ import com.lzy.springbootjwtcaptcha.annotation.UserLoginToken;
 import com.lzy.springbootjwtcaptcha.dao.User;
 import com.lzy.springbootjwtcaptcha.service.UserService;
 
-
-
 /**
  * @author lizhongyi
  */
@@ -79,7 +77,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-
         return true;
     }
 

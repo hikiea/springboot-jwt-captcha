@@ -3,7 +3,6 @@ package com.lzy.springbootjwtcaptcha.controller;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +26,7 @@ public class CheckCodeController {
     private CheckCodeService checkCodeService;
 
     @PassToken
-    @GetMapping("/code")
+    @GetMapping("/checkCode")
     public void verifyCode(HttpServletRequest request, HttpServletResponse response) {
         try {
             //设置长宽
