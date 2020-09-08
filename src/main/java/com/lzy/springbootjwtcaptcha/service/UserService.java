@@ -73,8 +73,4 @@ public class UserService {
         return ResultDTO.successOf("token已加入redis黑名单，登出成功");
     }
 
-    public BlackList checkBlackToken(String token) {
-        BlackList blackList = userMapper.checkBlackToken(token);
-        return blackList;
-    }
 }

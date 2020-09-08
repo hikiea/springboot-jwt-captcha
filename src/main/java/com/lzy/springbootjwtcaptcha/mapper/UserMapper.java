@@ -25,10 +25,4 @@ public interface UserMapper {
 
     @Select("select * from user")
     List<User> findUser();
-
-    @Insert("insert into blacklist (token) values (#{token})")
-    void addBlacklist(String token);
-
-    @Select("select * from blacklist where token = #{token}")
-    BlackList checkBlackToken(String token);
 }
