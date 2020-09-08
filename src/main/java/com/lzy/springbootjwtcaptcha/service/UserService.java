@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
 import com.lzy.springbootjwtcaptcha.dao.BlackList;
+import com.lzy.springbootjwtcaptcha.dao.RedisBlackToken;
 import com.lzy.springbootjwtcaptcha.dao.User;
 import com.lzy.springbootjwtcaptcha.dao.dto.ResultDTO;
+import com.lzy.springbootjwtcaptcha.dao.dto.UserLoginDTO;
 import com.lzy.springbootjwtcaptcha.mapper.UserMapper;
+import com.lzy.springbootjwtcaptcha.util.RedisUtil;
 
 
 /**
@@ -21,10 +24,16 @@ import com.lzy.springbootjwtcaptcha.mapper.UserMapper;
 public class UserService {
 
     @Autowired
-    public UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Autowired
     private CheckService checkService;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    @Autowired
+    private DateService dateService;
 
     public User findByUsername(String username){
         return userMapper.findByUsername(username);
@@ -55,8 +64,13 @@ public class UserService {
 
     public ResultDTO logout(HttpServletRequest httpServletRequest) {
         String token = httpServletRequest.getHeader("token");
-        userMapper.addBlacklist(token);
-        return ResultDTO.successOf("token已加入黑名单，登出成功");
+        RedisBlackToken blackToken = new RedisBlackToken();
+        blackToken.setId(JWT.decode(token).getAudience().get(0));
+        blackToken.setUsername(JWT.decode(token).getAudience().get(1));
+        blackToken.setPower(JWT.decode(token).getAudience().get(2));
+        blackToken.setTime(dateService.getNowDate());
+        redisUtil.set(token,blackToken);
+        return ResultDTO.successOf("token已加入redis黑名单，登出成功");
     }
 
     public BlackList checkBlackToken(String token) {

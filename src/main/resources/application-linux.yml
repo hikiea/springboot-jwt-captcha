@@ -4,10 +4,16 @@ spring:
     url: jdbc:mysql://116.62.15.76:3306/jwt?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
     username: root
     password: 1234
+  redis:
+    host: 116.62.15.76
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        min-idle: 0
 
 logging:
-  pattern:
-    console: "%d - %msg%n"
   file:
     path: C:\Users\Administrator\Desktop\jwtlog
 

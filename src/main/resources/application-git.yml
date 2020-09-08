@@ -4,9 +4,15 @@ spring:
     url: jdbc:mysql://xxx.xx.xx.xx:3306/jwt?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
     username: xxxxxxxx
     password: xxxxxxxx
+  redis:
+    host: xxx.xx.xx.xx
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        min-idle: 0
 
 logging:
-  pattern:
-    console: "%d - %msg%n"
   file:
     path: X:\xxx\xxx\xxx\xxx

@@ -17,6 +17,7 @@ import com.lzy.springbootjwtcaptcha.annotation.PassToken;
 import com.lzy.springbootjwtcaptcha.annotation.UserLoginToken;
 import com.lzy.springbootjwtcaptcha.dao.User;
 import com.lzy.springbootjwtcaptcha.service.UserService;
+import com.lzy.springbootjwtcaptcha.util.RedisUtil;
 
 /**
  * @author lizhongyi
@@ -25,6 +26,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
@@ -56,7 +60,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 if (token == null) {
                     throw new RuntimeException("无token，请重新登录");
                 }
-                if (userService.checkBlackToken(token) != null){
+                if (redisUtil.get(token) != null){
                     throw new RuntimeException("token已过期，请重新登录");
                 }
                 // 获取 token 中的 user id
