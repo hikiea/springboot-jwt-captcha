@@ -12,6 +12,7 @@ spring:
         max-active: 8
         max-wait: -1
         min-idle: 0
+    database: 1
 
 logging:
   file:
