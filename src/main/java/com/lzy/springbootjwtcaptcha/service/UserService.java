@@ -16,11 +16,14 @@ import com.lzy.springbootjwtcaptcha.dao.dto.UserLoginDTO;
 import com.lzy.springbootjwtcaptcha.mapper.UserMapper;
 import com.lzy.springbootjwtcaptcha.util.RedisUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * @author lizhongyi
  */
 @Service
+@Slf4j
 public class UserService {
 
     @Autowired
@@ -70,7 +73,8 @@ public class UserService {
         blackToken.setPower(JWT.decode(token).getAudience().get(2));
         blackToken.setTime(dateService.getNowDate());
         redisUtil.set(token,blackToken);
-        return ResultDTO.successOf("token已加入redis黑名单，登出成功");
+        log.info("用户：" + JWT.decode(token).getAudience().get(1) + "已登出");
+        return ResultDTO.successOf("登出成功");
     }
 
 }
