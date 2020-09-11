@@ -11,10 +11,10 @@ import com.lzy.springbootjwtcaptcha.modules.base.model.entity.ResultDTO;
 @ControllerAdvice
 public class GloablExceptionHandler {
 
-    @ResponseBody
+    /*@ResponseBody
     @ExceptionHandler(Exception.class)
     public ResultDTO handleException(Exception e) {
         String msg = e.getMessage();
         return ResultDTO.errorOf(500,msg);
-    }
+    }*/
 }

@@ -20,6 +20,7 @@ public class TokenService {
         String uuid = UUID.randomUUID().toString();
 
         String token="";
+
         // 将 需要的信息 保存到 token 里面
         token= JWT.create().withAudience(user.getId(),user.getUsername(),user.getPower(),uuid)
                 // 以 password 作为 token 的密钥

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
+import com.lzy.springbootjwtcaptcha.modules.user.model.dto.responseDTO.UserInfoResponseDTO;
 import com.lzy.springbootjwtcaptcha.modules.user.model.entity.User;
 import com.lzy.springbootjwtcaptcha.modules.base.model.entity.ResultDTO;
 import com.lzy.springbootjwtcaptcha.modules.user.model.dto.requestDTO.UserLoginDTO;
@@ -43,7 +44,11 @@ public class CheckService {
             request.getSession().setAttribute("code",null);
             String token = tokenService.getToken(userForBase);
             jsonObject.put("token", token);
-            jsonObject.put("user", userForBase);
+            UserInfoResponseDTO res = new UserInfoResponseDTO();
+            res.setId(userForBase.getId());
+            res.setUsername(userForBase.getUsername());
+            res.setPower(userForBase.getPower());
+            jsonObject.put("user", res);
             log.info("用户：" + userLoginInfo.getUsername() + "登录");
             return ResultDTO.successOf("登录成功",jsonObject);
         }

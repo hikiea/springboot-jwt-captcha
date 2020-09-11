@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
+import com.lzy.springbootjwtcaptcha.modules.user.model.dto.responseDTO.UserInfoResponseDTO;
 import com.lzy.springbootjwtcaptcha.modules.user.model.entity.RedisBlackToken;
 import com.lzy.springbootjwtcaptcha.modules.user.model.entity.User;
 import com.lzy.springbootjwtcaptcha.modules.base.model.entity.ResultDTO;
@@ -38,7 +39,7 @@ public class UserService {
     private DateUtil dateUtil;
 
     public User findByUsername(String username){
-        return userMapper.findByUsername(username);
+        return userMapper.findByUsernameToToken(username);
     }
 
     public User findUserById(String userId) {
@@ -57,7 +58,7 @@ public class UserService {
 
     public ResultDTO getAllUserByAdmin(HttpServletRequest httpServletRequest) {
         if (checkService.checkPowerByAdmin(httpServletRequest)){
-            List<User> users = userMapper.findUser();
+            List<UserInfoResponseDTO> users = userMapper.findUser();
             return ResultDTO.successOf("所有用户获取成功",users);
         }else{
             return ResultDTO.errorOf(500,"权限不足");
