@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class UserInfoResponseDTO {
 
-    private String id;
+    private Integer id;
 
     private String username;
 
