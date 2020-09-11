@@ -1,4 +1,4 @@
-package com.lzy.springbootjwtcaptcha.service;
+package com.lzy.springbootjwtcaptcha.modules.user.service;
 
 import java.util.List;
 
@@ -8,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
-import com.lzy.springbootjwtcaptcha.dao.BlackList;
-import com.lzy.springbootjwtcaptcha.dao.RedisBlackToken;
-import com.lzy.springbootjwtcaptcha.dao.User;
-import com.lzy.springbootjwtcaptcha.dao.dto.ResultDTO;
-import com.lzy.springbootjwtcaptcha.dao.dto.UserLoginDTO;
-import com.lzy.springbootjwtcaptcha.mapper.UserMapper;
+import com.lzy.springbootjwtcaptcha.modules.user.model.entity.RedisBlackToken;
+import com.lzy.springbootjwtcaptcha.modules.user.model.entity.User;
+import com.lzy.springbootjwtcaptcha.modules.base.model.entity.ResultDTO;
+import com.lzy.springbootjwtcaptcha.modules.user.mapper.UserMapper;
+import com.lzy.springbootjwtcaptcha.util.DateUtil;
 import com.lzy.springbootjwtcaptcha.util.RedisUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +35,7 @@ public class UserService {
     private RedisUtil redisUtil;
 
     @Autowired
-    private DateService dateService;
+    private DateUtil dateUtil;
 
     public User findByUsername(String username){
         return userMapper.findByUsername(username);
@@ -71,7 +70,7 @@ public class UserService {
         blackToken.setId(JWT.decode(token).getAudience().get(0));
         blackToken.setUsername(JWT.decode(token).getAudience().get(1));
         blackToken.setPower(JWT.decode(token).getAudience().get(2));
-        blackToken.setTime(dateService.getNowDate());
+        blackToken.setTime(dateUtil.getNowDate());
         redisUtil.set(token,blackToken);
         log.info("用户：" + JWT.decode(token).getAudience().get(1) + "已登出");
         return ResultDTO.successOf("登出成功");

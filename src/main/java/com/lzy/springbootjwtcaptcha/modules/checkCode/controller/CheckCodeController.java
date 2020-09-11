@@ -1,4 +1,4 @@
-package com.lzy.springbootjwtcaptcha.controller;
+package com.lzy.springbootjwtcaptcha.modules.checkCode.controller;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.lzy.springbootjwtcaptcha.annotation.PassToken;
-import com.lzy.springbootjwtcaptcha.dao.CheckCode;
-import com.lzy.springbootjwtcaptcha.service.CheckCodeService;
+import com.lzy.springbootjwtcaptcha.modules.checkCode.model.entity.CheckCode;
+import com.lzy.springbootjwtcaptcha.modules.checkCode.service.CheckCodeService;
 import lombok.extern.slf4j.Slf4j;
 
 

@@ -1,4 +1,4 @@
-package com.lzy.springbootjwtcaptcha.service;
+package com.lzy.springbootjwtcaptcha.modules.checkCode.service;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import com.lzy.springbootjwtcaptcha.dao.CheckCode;
+import com.lzy.springbootjwtcaptcha.modules.checkCode.model.entity.CheckCode;
 import com.lzy.springbootjwtcaptcha.util.RandomUtils;
 
 

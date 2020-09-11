@@ -1,12 +1,13 @@
-package com.lzy.springbootjwtcaptcha.dao.dto;
+package com.lzy.springbootjwtcaptcha.modules.user.model.entity;
 
 import lombok.Data;
+
 
 /**
  * @author lizhongyi
  */
 @Data
-public class UserLoginDTO {
+public class User {
 
     private String id;
 
@@ -14,6 +15,6 @@ public class UserLoginDTO {
 
     private String password;
 
-    private String code;
+    private String power;
 
 }

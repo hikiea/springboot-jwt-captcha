@@ -1,20 +1,19 @@
-package com.lzy.springbootjwtcaptcha.dao;
+package com.lzy.springbootjwtcaptcha.modules.user.model.entity;
 
 import lombok.Data;
-
 
 /**
  * @author lizhongyi
  */
 @Data
-public class User {
+public class RedisBlackToken {
 
     private String id;
 
     private String username;
 
-    private String password;
-
     private String power;
+
+    private String time;
 
 }

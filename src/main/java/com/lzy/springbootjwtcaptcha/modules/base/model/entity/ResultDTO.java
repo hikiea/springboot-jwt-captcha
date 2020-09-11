@@ -1,6 +1,4 @@
-package com.lzy.springbootjwtcaptcha.dao.dto;
-
-import com.alibaba.fastjson.JSONObject;
+package com.lzy.springbootjwtcaptcha.modules.base.model.entity;
 
 import lombok.Data;
 

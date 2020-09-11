@@ -3,8 +3,7 @@ package com.lzy.springbootjwtcaptcha.interceptor;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.alibaba.fastjson.JSONObject;
-import com.lzy.springbootjwtcaptcha.dao.dto.ResultDTO;
+import com.lzy.springbootjwtcaptcha.modules.base.model.entity.ResultDTO;
 
 /**
  * @author lizhongyi

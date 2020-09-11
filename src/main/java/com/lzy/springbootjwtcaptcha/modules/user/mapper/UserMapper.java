@@ -1,13 +1,11 @@
-package com.lzy.springbootjwtcaptcha.mapper;
+package com.lzy.springbootjwtcaptcha.modules.user.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
-import com.lzy.springbootjwtcaptcha.dao.BlackList;
-import com.lzy.springbootjwtcaptcha.dao.User;
+import com.lzy.springbootjwtcaptcha.modules.user.model.entity.User;
 
 
 /**

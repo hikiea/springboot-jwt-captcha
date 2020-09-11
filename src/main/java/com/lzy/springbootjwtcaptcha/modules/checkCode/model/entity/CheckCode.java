@@ -1,4 +1,4 @@
-package com.lzy.springbootjwtcaptcha.dao;
+package com.lzy.springbootjwtcaptcha.modules.checkCode.model.entity;
 
 import lombok.Data;
 

@@ -1,15 +1,16 @@
-package com.lzy.springbootjwtcaptcha.service;
+package com.lzy.springbootjwtcaptcha.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
  * @author lizhongyi
  */
-@Service
-public class DateService {
+@Component
+public class DateUtil {
 
     public String getNowDate(){
         Date date = new Date();

@@ -15,8 +15,8 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.lzy.springbootjwtcaptcha.annotation.PassToken;
 import com.lzy.springbootjwtcaptcha.annotation.UserLoginToken;
-import com.lzy.springbootjwtcaptcha.dao.User;
-import com.lzy.springbootjwtcaptcha.service.UserService;
+import com.lzy.springbootjwtcaptcha.modules.user.model.entity.User;
+import com.lzy.springbootjwtcaptcha.modules.user.service.UserService;
 import com.lzy.springbootjwtcaptcha.util.RedisUtil;
 
 /**

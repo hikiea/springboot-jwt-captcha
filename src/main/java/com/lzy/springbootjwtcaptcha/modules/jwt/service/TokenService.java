@@ -1,13 +1,11 @@
-package com.lzy.springbootjwtcaptcha.service;
+package com.lzy.springbootjwtcaptcha.modules.jwt.service;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.lzy.springbootjwtcaptcha.dao.User;
+import com.lzy.springbootjwtcaptcha.modules.user.model.entity.User;
 
 
 /**
