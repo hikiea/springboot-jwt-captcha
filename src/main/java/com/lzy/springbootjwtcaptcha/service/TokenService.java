@@ -20,18 +20,9 @@ public class TokenService {
 
     public String getToken(User user) {
 
-        Date iatDate = new Date();
-        // expire time
-        Calendar nowTime = Calendar.getInstance();
-        nowTime.add(calendarField, calendarInterval);
-        Date expiresDate = nowTime.getTime();
-
         String token="";
         // 将 需要的信息 保存到 token 里面
         token= JWT.create().withAudience(user.getId(),user.getUsername(),user.getPower())
-                // 设置token存活时间 10天
-                .withIssuedAt(iatDate)
-                .withExpiresAt(expiresDate)
                 // 以 password 作为 token 的密钥
                 .sign(Algorithm.HMAC256(user.getPassword()));
 
