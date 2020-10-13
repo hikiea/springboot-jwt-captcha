@@ -210,7 +210,8 @@ jwt验证功能大幅度参考：https://www.jianshu.com/p/e88d3f8151db
 
 ## 四、退出登录
 
-退出登录功能主要操作token，把token加入黑名单中
+退出登录功能
+1. 把token加入黑名单中
 
 - 请求方式
 
@@ -249,6 +250,10 @@ jwt验证功能大幅度参考：https://www.jianshu.com/p/e88d3f8151db
       "data": null
   }
   ```
+  
+2. token存活超过时间，自动写入黑名单 
+
+- 自动完成
 
   
 
