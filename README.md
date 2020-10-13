@@ -10,6 +10,8 @@ jwt验证功能大幅度参考：https://www.jianshu.com/p/e88d3f8151db
 
 实现对游离状态的token控制
 
+添加了对过期token的处理：加入token黑名单
+
 ## 一、登录流程
 
 ### （一）获取验证码
