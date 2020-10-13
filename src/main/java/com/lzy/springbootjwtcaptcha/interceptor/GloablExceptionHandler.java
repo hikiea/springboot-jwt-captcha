@@ -18,11 +18,6 @@ public class GloablExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResultDTO handleException(Exception e) {
         String msg = e.getMessage();
-
-        if (msg.equals("401")){
-            msg = "当前token已过期，请重新登录！";
-        }
-
         return ResultDTO.errorOf(500,msg);
     }
 }
