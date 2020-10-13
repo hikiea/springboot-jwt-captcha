@@ -35,9 +35,6 @@ public class UserService {
     @Autowired
     private RedisUtil redisUtil;
 
-    @Autowired
-    private DateUtil dateUtil;
-
     public User findByUsername(String username){
         return userMapper.findByUsernameToToken(username);
     }
@@ -71,7 +68,7 @@ public class UserService {
         blackToken.setId(JWT.decode(token).getAudience().get(0));
         blackToken.setUsername(JWT.decode(token).getAudience().get(1));
         blackToken.setPower(JWT.decode(token).getAudience().get(2));
-        blackToken.setTime(dateUtil.getNowDate());
+        blackToken.setTime(DateUtil.getNowDate());
         redisUtil.set(token,blackToken);
         log.info("用户：" + JWT.decode(token).getAudience().get(1) + "已登出");
         return ResultDTO.successOf("登出成功");

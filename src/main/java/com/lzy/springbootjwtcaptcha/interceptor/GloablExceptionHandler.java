@@ -3,7 +3,10 @@ package com.lzy.springbootjwtcaptcha.interceptor;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.auth0.jwt.JWT;
 import com.lzy.springbootjwtcaptcha.modules.base.model.entity.ResultDTO;
+import com.lzy.springbootjwtcaptcha.modules.user.model.entity.RedisBlackToken;
+import com.lzy.springbootjwtcaptcha.util.DateUtil;
 
 /**
  * @author lizhongyi
@@ -15,6 +18,11 @@ public class GloablExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResultDTO handleException(Exception e) {
         String msg = e.getMessage();
+
+        if (msg.equals("401")){
+            msg = "当前token已过期，请重新登录！";
+        }
+
         return ResultDTO.errorOf(500,msg);
     }
 }

@@ -31,7 +31,7 @@ public class CheckService {
         JSONObject jsonObject=new JSONObject();
         if (!userLoginInfo.getCode().equals(request.getSession().getAttribute("code"))){
             request.getSession().setAttribute("code",null);
-            return ResultDTO.errorOf(500,"验证码错误");
+            // return ResultDTO.errorOf(500,"验证码错误");
         }
         User userForBase=userService.findByUsername(userLoginInfo.getUsername());
         if(userForBase==null){
