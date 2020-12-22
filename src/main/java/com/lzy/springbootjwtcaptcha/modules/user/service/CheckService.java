@@ -1,6 +1,8 @@
 package com.lzy.springbootjwtcaptcha.modules.user.service;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.lzy.springbootjwtcaptcha.redis.RedisCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONObject;
@@ -26,22 +28,28 @@ public class CheckService {
     @Autowired
     private TokenService tokenService;
 
-    public ResultDTO checkLogin(UserLoginDTO userLoginInfo, HttpServletRequest request) {
+    @Autowired
+    private RedisCodeUtil redisUtil;
 
+    public ResultDTO checkLogin(UserLoginDTO userLoginInfo) {
+
+        String code = userLoginInfo.getCode();
+        Object code2 = redisUtil.get(userLoginInfo.getCode());
+        System.out.println("登录中的验证码："+code2);
         JSONObject jsonObject=new JSONObject();
-        if (!userLoginInfo.getCode().equals(request.getSession().getAttribute("code"))){
-            request.getSession().setAttribute("code",null);
-            // return ResultDTO.errorOf(500,"验证码错误");
+        if (!code.equals(code2)){
+            redisUtil.del(code);
+            return ResultDTO.errorOf(500,"验证码错误");
         }
         User userForBase=userService.findByUsername(userLoginInfo.getUsername());
         if(userForBase==null){
-            request.getSession().setAttribute("code",null);
+            redisUtil.del(code);
             return ResultDTO.errorOf(500,"登录失败，用户不存在");
         }else if(!userForBase.getPassword().equals(userLoginInfo.getPassword())){
-            request.getSession().setAttribute("code",null);
+            redisUtil.del(code);
             return ResultDTO.errorOf(500,"登录失败，密码错误");
         }else {
-            request.getSession().setAttribute("code",null);
+            redisUtil.del(code);
             String token = tokenService.getToken(userForBase);
             jsonObject.put("token", token);
             UserInfoResponseDTO res = new UserInfoResponseDTO();

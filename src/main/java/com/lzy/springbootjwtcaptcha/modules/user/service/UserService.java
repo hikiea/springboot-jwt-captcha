@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.lzy.springbootjwtcaptcha.redis.RedisTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONObject;
@@ -14,8 +15,6 @@ import com.lzy.springbootjwtcaptcha.modules.user.model.entity.User;
 import com.lzy.springbootjwtcaptcha.modules.base.model.entity.ResultDTO;
 import com.lzy.springbootjwtcaptcha.modules.user.mapper.UserMapper;
 import com.lzy.springbootjwtcaptcha.util.DateUtil;
-import com.lzy.springbootjwtcaptcha.util.RedisUtil;
-
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -33,7 +32,7 @@ public class UserService {
     private CheckService checkService;
 
     @Autowired
-    private RedisUtil redisUtil;
+    private RedisTokenUtil redisUtil;
 
     public User findByUsername(String username){
         return userMapper.findByUsernameToToken(username);

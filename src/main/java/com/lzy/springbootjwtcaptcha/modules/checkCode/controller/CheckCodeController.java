@@ -3,14 +3,18 @@ package com.lzy.springbootjwtcaptcha.modules.checkCode.controller;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.lzy.springbootjwtcaptcha.redis.RedisCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.lzy.springbootjwtcaptcha.annotation.PassToken;
 import com.lzy.springbootjwtcaptcha.modules.checkCode.model.entity.CheckCode;
 import com.lzy.springbootjwtcaptcha.modules.checkCode.service.CheckCodeService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 
 /**
@@ -18,23 +22,30 @@ import lombok.extern.slf4j.Slf4j;
  * @author lizhongyi
  */
 @Controller
-@RequestMapping("api")
+@RequestMapping("/api")
 @Slf4j
+@CrossOrigin
 public class CheckCodeController {
 
     @Autowired
     private CheckCodeService checkCodeService;
 
-    @PassToken
+    @Autowired
+    private RedisCodeUtil redisCodeUtil;
+
     @GetMapping("/checkCode")
-    public void verifyCode(HttpServletRequest request, HttpServletResponse response) {
+    public void verifyCode(HttpServletResponse response) {
+
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String resultCode = "";
         try {
             //设置长宽
             CheckCode checkCode = checkCodeService.generate(80, 28);
-            String code = checkCode.getCode();
-            System.out.println("当前验证码为:" + code);
+            resultCode = checkCode.getCode();
             //将VerifyCode绑定session
-            request.getSession().setAttribute("code", code);
+            request.getSession().setAttribute("code", resultCode);
+            redisCodeUtil.set(resultCode,resultCode);
+            System.out.println("获取验证码图片接口中的值:" + request.getSession().getAttribute("code"));
             //设置响应头
             response.setHeader("Pragma", "no-cache");
             //设置响应头
@@ -49,5 +60,7 @@ public class CheckCodeController {
             e.printStackTrace();
         }
     }
+
+
 
 }

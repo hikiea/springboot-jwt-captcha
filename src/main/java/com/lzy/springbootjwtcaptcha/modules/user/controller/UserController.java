@@ -2,11 +2,7 @@ package com.lzy.springbootjwtcaptcha.modules.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.lzy.springbootjwtcaptcha.annotation.UserLoginToken;
 import com.lzy.springbootjwtcaptcha.modules.base.model.entity.ResultDTO;
 import com.lzy.springbootjwtcaptcha.modules.user.model.dto.requestDTO.UserLoginDTO;
@@ -19,7 +15,8 @@ import lombok.extern.slf4j.Slf4j;
  * @author lizhongyi
  */
 @RestController
-@RequestMapping("api")
+@RequestMapping("/api/user")
+@CrossOrigin
 @Slf4j
 public class UserController {
 
@@ -30,8 +27,9 @@ public class UserController {
     private CheckService checkService;
 
     @PostMapping("/login")
-    public ResultDTO login(@RequestBody UserLoginDTO userLoginInfo, HttpServletRequest request){
-        ResultDTO resultDTO = checkService.checkLogin(userLoginInfo, request);
+    @CrossOrigin
+    public ResultDTO login(@RequestBody UserLoginDTO userLoginInfo){
+        ResultDTO resultDTO = checkService.checkLogin(userLoginInfo);
         return resultDTO;
     }
     

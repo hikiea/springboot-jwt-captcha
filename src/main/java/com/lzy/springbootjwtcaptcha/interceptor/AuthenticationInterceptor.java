@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lzy.springbootjwtcaptcha.redis.RedisTokenUtil;
+import com.lzy.springbootjwtcaptcha.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -19,8 +21,6 @@ import com.lzy.springbootjwtcaptcha.annotation.UserLoginToken;
 import com.lzy.springbootjwtcaptcha.modules.user.model.entity.RedisBlackToken;
 import com.lzy.springbootjwtcaptcha.modules.user.model.entity.User;
 import com.lzy.springbootjwtcaptcha.modules.user.service.UserService;
-import com.lzy.springbootjwtcaptcha.util.DateUtil;
-import com.lzy.springbootjwtcaptcha.util.RedisUtil;
 
 /**
  * @author lizhongyi
@@ -31,7 +31,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     private UserService userService;
 
     @Autowired
-    private RedisUtil redisUtil;
+    private RedisTokenUtil redisUtil;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
